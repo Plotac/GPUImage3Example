@@ -1,0 +1,25 @@
+platform :ios, '14.0'
+source 'https://cdn.cocoapods.org/'
+#source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+inhibit_all_warnings!
+
+target 'GPUImage3Example' do
+  use_frameworks!
+  
+#  pod 'GPUImage3'
+
+  pod 'SnapKit'
+  pod 'ZLPhotoBrowser'
+  pod 'IQKeyboardManagerSwift'
+  
+end
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+        project.targets.each do |target|
+            target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+            end
+        end
+    end
+end
